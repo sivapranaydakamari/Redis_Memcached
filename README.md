@@ -58,10 +58,6 @@ you can hit the exact same endpoint twice and compare behavior.
    docker-compose exec db psql -U postgres -d products_db -c "SELECT count(*) FROM products;"
    ```
 
-> Running on Windows? The commands above work as-is in PowerShell.
-> `scripts/run_benchmarks.sh` and `scripts/consistencyTest.js` are
-> easiest to run from Git Bash/WSL, since the benchmark script is a
-> bash script.
 
 ## API Examples
 
@@ -106,7 +102,6 @@ curl -X POST -H "Content-Type: application/json" -H "X-Cache-Backend: redis" \
 curl -X PATCH -H "Content-Type: application/json" -H "X-Cache-Backend: redis" \
   -d '{"value": "2026-06-22"}' http://localhost:3000/session/abc/last_login
 
-# Confirm only that one field changed:
 docker-compose exec redis redis-cli HGET session:abc last_login
 ```
 

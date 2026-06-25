@@ -1,6 +1,3 @@
-# Dockerfile - builds the Product Catalog API image.
-# Kept tiny on purpose: copy package files first so "npm install" is
-# cached by Docker as long as dependencies don't change, then copy code.
 FROM node:20-alpine
 
 WORKDIR /app
