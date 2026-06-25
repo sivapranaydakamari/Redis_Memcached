@@ -1,13 +1,3 @@
-// scripts/consistencyTest.js
-// Stress-tests the leaderboard increment logic to PROVE the race
-// condition described in the assignment:
-//   - Redis (ZINCRBY)                        -> always ends at exactly 1000
-//   - Memcached, no lock (read+modify+write)  -> ends BELOW 1000 (lost updates)
-//   - Memcached, with add()-based lock        -> always ends at exactly 1000
-//
-// Run with (after `docker-compose up -d`, from your host machine):
-//   REDIS_URL=redis://localhost:6379 MEMCACHED_URL=localhost:11211 node scripts/consistencyTest.js
-
 require('dotenv').config();
 
 const { redisClient, connectRedis } = require('../src/redisClient');
@@ -27,9 +17,6 @@ const MEMCACHED_WITH_LOCK_ID = 'consistency-test-with-lock';
 
 const SUBMISSION_JSON_PATH = path.join(__dirname, '..', 'submission.json');
 
-// Runs `incrementFn` INCREMENTS_PER_CLIENT times, in CONCURRENT_CLIENTS
-// parallel "clients" - that's what the assignment means by "10
-// concurrent clients incrementing the same ID 100 times".
 async function runConcurrentIncrements(incrementFn, productId) {
   const clientLoop = async () => {
     for (let i = 0; i < INCREMENTS_PER_CLIENT; i++) {

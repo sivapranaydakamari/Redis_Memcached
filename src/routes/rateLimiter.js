@@ -1,7 +1,3 @@
-// routes/rateLimiter.js - a test endpoint for the rate limiter: 100
-// requests per minute per user. Send the same :userId repeatedly to
-// see HTTP 429 once the 101st request in a 60-second window arrives.
-
 const express = require('express');
 const router = express.Router();
 const rateLimiterService = require('../services/rateLimiterService');

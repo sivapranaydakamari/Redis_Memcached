@@ -1,6 +1,5 @@
-// routes/leaderboard.js - GET /leaderboard returns the top 10
+//GET /leaderboard returns the top 10
 // most-viewed products for whichever backend is selected.
-
 const express = require('express');
 const router = express.Router();
 const leaderboardService = require('../services/leaderboardService');

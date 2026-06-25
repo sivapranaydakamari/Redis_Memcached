@@ -1,6 +1,3 @@
-// routes/session.js - session endpoints used to compare Redis Hashes
-// against Memcached JSON strings (see services/sessionService.js).
-
 const express = require('express');
 const router = express.Router();
 const sessionService = require('../services/sessionService');

@@ -2,12 +2,6 @@
 # run_benchmarks.sh
 # Runs memtier_benchmark against the Redis and Memcached containers at
 # pipeline depths 1, 10, and 50, using a 9:1 read/write ratio and a
-# Gaussian key distribution. Results are appended to results/*.txt.
-#
-# Requires: docker, and the stack already running (docker-compose up -d).
-# Uses the redislabs/memtier_benchmark image so you don't need to
-# install memtier_benchmark on your host machine.
-#
 # Usage (from Git Bash / WSL / Linux / macOS):
 #   ./scripts/run_benchmarks.sh
 

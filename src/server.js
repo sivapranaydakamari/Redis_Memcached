@@ -1,7 +1,3 @@
-// server.js - entry point for the Product Catalog API.
-// Wires together Express, the backend-selector middleware, and all the
-// route modules. Run with: node src/server.js
-
 require('dotenv').config();
 
 const express = require('express');
@@ -16,7 +12,6 @@ const rateLimiterRouter = require('./routes/rateLimiter');
 const app = express();
 app.use(express.json());
 
-// Used by docker-compose's healthcheck for the "app" service.
 app.get('/health', (req, res) => res.status(200).json({ status: 'ok' }));
 
 // Every route below this line can read req.cacheBackend.
@@ -29,10 +24,6 @@ app.use('/rate-limit-test', rateLimiterRouter);
 
 const PORT = process.env.API_PORT || 3000;
 
-// Subscribes to the same channel Redis cache invalidation publishes to.
-// In a real multi-instance deployment, every app instance would
-// subscribe and drop its own local copy of the product; here we just
-// log it, to demonstrate the PUBLISH-based invalidation pattern.
 async function subscribeToInvalidations() {
   const subscriber = redisClient.duplicate();
   await subscriber.connect();

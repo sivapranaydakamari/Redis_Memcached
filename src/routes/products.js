@@ -1,7 +1,3 @@
-// routes/products.js - product endpoints. Each handler looks at
-// req.cacheBackend (set by middleware/backendSelector.js) and calls the
-// matching Redis or Memcached function from services/productService.js.
-
 const express = require('express');
 const router = express.Router();
 const db = require('../db');
@@ -35,7 +31,6 @@ router.post('/:id', async (req, res) => {
   const { name, description, price, category } = req.body;
 
   try {
-    // COALESCE keeps the existing value for any field left out of the request body.
     const result = await db.query(
       `UPDATE products
        SET name = COALESCE($1, name),
